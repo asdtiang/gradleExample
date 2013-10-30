@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: "maven"
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+
+repositories {
+	mavenCentral()
+    mavenCentral()
+}
+
+dependencies {
+	compile 'commons-lang:commons-lang:2.6'
+	
+	testCompile 'junit:junit:4.9'
+	compile 'org.codehaus.groovy:groovy-all:2.1.7'
+	
+	runtime fileTree(dir: 'libs', include: '*.jar')
+    compile 'commons-collections:commons-collections:3.2.1'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
